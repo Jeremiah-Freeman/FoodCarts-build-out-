@@ -52,6 +52,7 @@ class CuisineTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertEquals($test_cuisine, $result[0]);
     }
+    
     function test_getAll()
     {
         //Arrange
@@ -66,6 +67,7 @@ class CuisineTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertEquals([$test_Cuisine, $test_Cuisine2], $result);
     }
+
     function test_deleteAll()
     {
        //Arrange
@@ -81,6 +83,7 @@ class CuisineTest extends PHPUnit_Framework_TestCase
        //Assert
        $this->assertEquals([], $result);
     }
+
     function test_find()
     {
        //Arrange

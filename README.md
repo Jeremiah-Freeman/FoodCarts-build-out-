@@ -7,13 +7,20 @@ By Jeremiah Freeman
 
 
 | Behavior | Input 1 | Input 2 | Output |
-|-|-|-|-|
+|----------|---------|---------|--------|
 | Create cuisine object | new Cuisine("thai") | - | Thai = cuisine object -> getType() |
 | Test cuisine id | new Cuisine("thai", 1) | - | 1 = cuisine object->getID() |
 | Test cuisine save | new Cuisine("thai") / call save()|-| Cuisine::getAll() != null|
 | Test cuisine getAll | new Cuisine("thai")/new Cuisine("indian") / call getAll() | - | Cuisine::getAll() == [object1, object2] |
 | Test cuisine deleteAll | new Cuisine("thai")/new Cuisine("indian") / call deleteAll() |-| Cuisine::deleteAll() == [] |
 | Test cuisine 'find' | new Cuisine("thai")/new Cuisine("indian") / call find(thai object id) | - | Cuisine::find() == Thai object |
+| Test Cart save() | new Cart Object | - | Test Cart save() = true(passing) |
+| Test Cart getAll() | new Cart Object 1 | new Cart Object 2 | getAll() returns both objects |
+| Test Cart deleteAll() | new Cart Object 1 | new Cart Object 2 | deleteAll() returns empty array |
+| Test Cart getId() | new Cart Object 1 | - | Returns Id of object |
+| Test Cart getCuisineId() | new Cart Object 1 | - | Returns Id of Cuisine |
+| Test Cart getupDateName() | new Cart Object 1 | - | Returns updated name | Test Cart find(idof1) | new Cart Object 1 | new Cart Object 2 |  Returns object 1 |
+
 
 
 
