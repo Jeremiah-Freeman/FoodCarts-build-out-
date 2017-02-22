@@ -4,14 +4,14 @@ class Cuisine
     private $type;
     private $id;
 
-    function __construct($type,$id=null)
+    function __construct($type, $id=null)
     {
         $this->type = $type;
         $this->id = $id;
     }
     function setType($new_type)
     {
-        $this->type = (string) $new_type;
+        $this->type = $new_type;
     }
     function getType()
     {
@@ -19,7 +19,7 @@ class Cuisine
     }
     function getId()
     {
-      return $this->id;
+        return $this->id;
     }
     function save()
     {
@@ -30,10 +30,10 @@ class Cuisine
     {
         $returned_cuisines = $GLOBALS['DB']->query("SELECT * FROM cuisines;");
         $cuisines = array();
-        foreach($returned_cuisines as $type) {
-            $name = $type['type'];
-            $id = $type['id'];
-            $new_type = new Cuisine($type, $id);
+        foreach($returned_cuisines as $cuisine) {
+            $cuisine_type = $cuisine['type'];
+            $id = $cuisine['id'];
+            $new_type = new Cuisine($cuisine_type, $id);
             array_push($cuisines, $new_type);
         }
         return $cuisines;

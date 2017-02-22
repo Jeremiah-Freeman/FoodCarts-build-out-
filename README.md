@@ -7,8 +7,15 @@ By Jeremiah Freeman
 
 
 | Behavior | Input 1 | Input 2 | Output |
-|----------|---------|---------|--------|
-| Create cuisine object | new Cuisine("thai") | - | Thai = cuisine object -> getType |
+|-|-|-|-|
+| Create cuisine object | new Cuisine("thai") | - | Thai = cuisine object -> getType() |
+| Test cuisine id | new Cuisine("thai", 1) | - | 1 = cuisine object->getID() |
+| Test cuisine save | new Cuisine("thai") / call save())|-| Category::getAll() != null|
+
+
+
+
+
 
 Setup/Installation Requirements
 
