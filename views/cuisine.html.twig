@@ -1,0 +1,41 @@
+<html>
+<head>
+    <title>Portland Food Carts</title>
+</head>
+<body>
+    <h1>{{ cuisine.getType }}</h1>
+
+    {% if carts is not empty %}
+        <p>Here are the Carts:</p>
+        <ul>
+            {% for cart in carts %}
+                <li>{{ cart.getName }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <h4>Add a Cart</h4>
+
+    <form action='/carts' method='post'>
+        <input id="cuisine_id" name="cuisine_id" type="hidden" value="{{ cuisine.getId() }}">
+        <label for='name'>Cart Name</label>
+        <input id='name' name='name' type='text'>
+        <label for='street'>Street</label>
+        <input id='street' name='street' type='text'>
+        <label for='city'>City</label>
+        <input id='city' name='city' type='text'>
+        <label for='state'>State</label>
+        <input id='state' name='state' type='text'>
+        <label for='zip'>Zip Code/label>
+        <input id='zip' name='zip' type='number'>
+        <label for='phone'>Phone Number</label>
+        <input id='phone' name='phone' type='text'>
+        <label for='url'>Web Address</label>
+        <input id='url' name='url' type='text'>
+
+        <button type='submit'>Add Cart</button>
+    </form>
+    <p><a href="/cuisines/{{ cuisine.getId }}/edit">Edit this Cuisine</a></p>
+    <p><a href='/'>Home</a></p>
+</body>
+</html>
