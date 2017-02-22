@@ -27,7 +27,17 @@ class CuisineTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertEquals($type, $result);
     }
-
+    function test_getId()
+    {
+        //Arrange
+        $type = "Thai";
+        $id = 1;
+        $test_cuisine = new Cuisine($type,$id);
+        //Act
+        $result = $test_cuisine->getId();
+        //Assert
+        $this->assertEquals(true, is_numeric($result));
+    }
 }
 
 
