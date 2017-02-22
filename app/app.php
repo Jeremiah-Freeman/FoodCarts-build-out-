@@ -31,11 +31,11 @@
     $app->post('/carts' ,function() use ($app) {
         $cart = new Cart($_POST['name'], null, $_POST['cuisine_id'], $_POST['street'], $_POST['city'], $_POST['state'], intval($_POST['zip']), $_POST['phone'], $_POST['url']);
         $cart->save();
-        return $app['twig']->render('carts.html.twig' , array('carts' => Cart::getAll()));
+        return $app['twig']->render('index.html.twig' , array('cuisines' => Cuisine::getAll()));
     });
 
     $app->get('/cuisines' , function() use ($app) {
-        return $app['twig']->render('cuisines.html.twig' , array('cuisines' => Cart::getAll()));
+        return $app['twig']->render('cuisines.html.twig' , array('cuisines' => Cuisine::getAll()));
     });
 
     $app->post("/cuisines", function() use ($app) {

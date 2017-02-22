@@ -5,16 +5,8 @@
     <link rel='stylesheet' href='css/styles.css' type='text/css'>
 </head>
 <body>
+    <p><a href='/'>Home</a></p>
     <h1>Cuisines</h1>
-
-    {% if cuisines is not empty %}
-        <p>Here are all your cuisines:</p>
-        <ul>
-            {% for cuisine in cuisines %}
-                <li>{{ cuisine.getType }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
 
     <form action='/cuisines' method='post'>
         <label for='name'>Cuisine name</label>
@@ -22,10 +14,18 @@
 
         <button type='submit'>Add cuisine</button>
     </form>
+    {% if cuisines is not empty %}
+        <p>Here are all our cuisines:</p>
+        <ul>
+            {% for cuisine in cuisines %}
+                <li>{{ cuisine.getType }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
     <form action='/delete_cuisines' method='post'>
         <button type='submit'>Clear</button>
     </form>
 
-    <p><a href='/'>Home</a></p>
 </body>
 </html>
