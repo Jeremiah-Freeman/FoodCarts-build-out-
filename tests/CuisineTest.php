@@ -66,6 +66,21 @@ class CuisineTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertEquals([$test_Cuisine, $test_Cuisine2], $result);
     }
+    function test_deleteAll()
+    {
+       //Arrange
+       $type = "Thai";
+       $type2 = "Indian";
+       $test_Cuisine = new Cuisine($type);
+       $test_Cuisine->save();
+       $test_Cuisine2 = new Cuisine($type2);
+       $test_Cuisine2->save();
+       //Act
+       Cuisine::deleteAll();
+       $result = Cuisine::getAll();
+       //Assert
+       $this->assertEquals([], $result);
+    }
 
 }
 

@@ -10,7 +10,9 @@ By Jeremiah Freeman
 |-|-|-|-|
 | Create cuisine object | new Cuisine("thai") | - | Thai = cuisine object -> getType() |
 | Test cuisine id | new Cuisine("thai", 1) | - | 1 = cuisine object->getID() |
-| Test cuisine save | new Cuisine("thai") / call save())|-| Category::getAll() != null|
+| Test cuisine save | new Cuisine("thai") / call save()|-| Cuisine::getAll() != null|
+| Test cuisine getAll | new Cuisine("thai")/new Cuisine("indian") / call getAll() | Cuisine::getAll() == [object1, object2] |
+| Test cuisine deleteAll | new Cuisine("thai")/new Cuisine("indian") / call deleteAll() | Cuisine::deleteAll() == [] |
 
 
 
