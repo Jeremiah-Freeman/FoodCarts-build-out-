@@ -9,7 +9,7 @@ class Cuisine
         $this->type = $type;
         $this->id = $id;
     }
-    
+
     function setType($new_type)
     {
         $this->type = $new_type;
@@ -29,6 +29,36 @@ class Cuisine
     {
         $GLOBALS['DB']->exec("INSERT INTO cuisines (type) VALUES ('{$this->getType()}')");
         $this->id= $GLOBALS['DB']->lastInsertId();
+    }
+
+    function getCarts()
+    {
+        $carts = Array();
+        $returned_carts = $GLOBALS['DB']->query("SELECT * FROM carts WHERE cuisine_id = {$this->getId()};");
+        foreach($returned_carts as $cart) {
+            $name = $cart['name'];
+            $id = $cart['id'];
+            $cuisine_id = $cart['cuisine_id'];
+            $street = $cart['street'];
+            $city = $cart['city'];
+            $state = $cart['state'];
+            $zip = intval($cart['zip']);
+            $phone = $cart['phone'];
+            $url = $cart['url'];
+            $new_cart = new Cart($name, $id, $cuisine_id,$street,$city,$state,$zip,$phone,$url);
+            array_push($carts, $new_cart);
+        }
+        return $carts;
+    }
+    function update($new_type)
+    {
+        $GLOBALS['DB']->exec("UPDATE cuisines SET type = '{$new_type}' WHERE id = {$this->getId()};");
+        $this->setName($new_type);
+    }
+    function delete()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM cuisines WHERE id = {$this->getId()};");
+        $GLOBALS['DB']->exec("DELETE FROM carts WHERE cuisine_id = {$this->getId()};");
     }
 
     static function getAll()
@@ -61,6 +91,8 @@ class Cuisine
         }
         return $found_cuisine;
     }
+
+
 
 
 }
