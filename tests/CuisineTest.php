@@ -47,13 +47,24 @@ class CuisineTest extends PHPUnit_Framework_TestCase
         $type = "Thai";
         $test_cuisine = new Cuisine($type);
         $test_cuisine->save();
-
-        echo "new id: \n";
-        echo $test_cuisine->getId();
         //Act
         $result = Cuisine::getAll();
         //Assert
         $this->assertEquals($test_cuisine, $result[0]);
+    }
+    function test_getAll()
+    {
+        //Arrange
+        $type = "Thai";
+        $type2 = "Indian";
+        $test_Cuisine = new Cuisine($type);
+        $test_Cuisine->save();
+        $test_Cuisine2 = new Cuisine($type2);
+        $test_Cuisine2->save();
+        //Act
+        $result = Cuisine::getAll();
+        //Assert
+        $this->assertEquals([$test_Cuisine, $test_Cuisine2], $result);
     }
 
 }
