@@ -13,7 +13,7 @@ By Jeremiah Freeman
 | Test cuisine save | new Cuisine("thai") / call save()|-| Cuisine::getAll() != null|
 | Test cuisine getAll | new Cuisine("thai")/new Cuisine("indian") / call getAll() | - | Cuisine::getAll() == [object1, object2] |
 | Test cuisine deleteAll | new Cuisine("thai")/new Cuisine("indian") / call deleteAll() |-| Cuisine::deleteAll() == [] |
-
+| Test cuisine 'find' | new Cuisine("thai")/new Cuisine("indian") / call find(thai object id) | - | Cuisine::find() == Thai object |
 
 
 
