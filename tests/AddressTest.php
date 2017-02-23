@@ -33,17 +33,21 @@ class AddressTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($street, $result);
     }
 //
-//     function test_getId()
-//     {
-//         //Arrange
-//         $type = "Thai";
-//         $id = 1;
-//         $test_address = new Address($type,$id);
-//         //Act
-//         $result = $test_address->getId();
-//         //Assert
-//         $this->assertEquals(true, is_numeric($result));
-//     }
+    function test_getId()
+    {
+        //Arrange
+        $street = "12345 ne dog";
+        $city = "portland";
+        $state = "Guam";
+        $zip = 97230;
+        $id = 1;
+        $test_address = new Address($street, $city, $state, $zip, $id);
+
+        //Act
+        $result = $test_address->getId();
+        //Assert
+        $this->assertEquals(true, is_numeric($result));
+    }
 //
 //     function test_save()
 //     {

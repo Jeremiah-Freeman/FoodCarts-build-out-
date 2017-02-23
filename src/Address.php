@@ -12,12 +12,13 @@ class Address
     private $id;
 
     // address object constructor
-    function __construct($street, $city, $state, $zip)
+    function __construct($street, $city, $state, $zip, $id=null)
     {
         $this->street = $street;
         $this->city = $city;
         $this->state = $state;
         $this->zip = $zip;
+        $this->id = $id;
     }
     // getter methods
     function getStreet()
