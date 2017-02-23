@@ -23,8 +23,8 @@ class AddressTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $street = "12345 ne dog";
-        $city = "portland";
-        $state = "Guam";
+        $city = new City("portland");
+        $state = new State("Guam");
         $zip = 97230;
         $test_address = new Address($street, $city, $state, $zip);
         //Act
@@ -37,8 +37,8 @@ class AddressTest extends PHPUnit_Framework_TestCase
     {
         //Arrange
         $street = "12345 ne dog";
-        $city = "portland";
-        $state = "Guam";
+        $city = new City("portland");
+        $state = new State("Guam");
         $zip = 97230;
         $id = 1;
         $test_address = new Address($street, $city, $state, $zip, $id);
@@ -48,39 +48,52 @@ class AddressTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertEquals(true, is_numeric($result));
     }
-//
-    // function test_save()
-    // {
-    //     //Arrange
-    //     $street = "12345 ne dog";
-    //     $city = "portland";
-    //     $state = "Guam";
-    //     $zip = 97230;
-    //     $test_address = new Address($street, $city, $state, $zip);
-    //     $test_address->save();
+
+    function test_save()
+    {
+        //Arrange
+        $street = "12345 ne dog";
+        $city = new City("portland");
+        $city->save();
+        $state = new State("Guam");
+        $state->save();
+        $zip = 97230;
+        $test_address = new Address($street, $city, $state, $zip);
+        $test_address->save();
+
+        //Act
+        $result = Address::getAll();
+
+        //Assert
+        $this->assertEquals($test_address, $result[0]);
+    }
     //
-    //
-    //     //Act
-    //     $result = Address::getAll();
-    //
-    //     //Assert
-    //     $this->assertEquals($test_address, $result[0]);
-    // }
-//     //
-//     function test_getAll()
-//     {
-//         //Arrange
-//         $type = "Thai";
-//         $type2 = "Indian";
-//         $test_Address = new Address($type);
-//         $test_Address->save();
-//         $test_Address2 = new Address($type2);
-//         $test_Address2->save();
-//         //Act
-//         $result = Address::getAll();
-//         //Assert
-//         $this->assertEquals([$test_Address, $test_Address2], $result);
-//     }
+    function test_getAll()
+    {
+        //Arrange
+        $street = "12345 ne dog";
+        $city = new City("portland");
+        $city->save();
+        $state = new State("Guam");
+        $state->save();
+        $zip = 97230;
+        $test_address = new Address($street, $city, $state, $zip);
+        $test_address->save();
+
+
+        $street2 = "12345 ww dog";
+        $city2 = new City("portland");
+        $city2->save();
+        $state2 = new State("sss");
+        $state2->save();
+        $zip2 = 97230;
+        $test_address2 = new Address($street, $city, $state, $zip);
+        $test_address2->save();
+        //Act
+        $result = Address::getAll();
+        //Assert
+        $this->assertEquals([$test_address, $test_address2], $result);
+    }
 //
 //     function test_deleteAll()
 //     {
