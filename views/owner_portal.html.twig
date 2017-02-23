@@ -6,7 +6,46 @@
 </head>
 <body>
     <div class="container-fluid">
-        <h1 class="text-center">Portland Food Carts</h1>
+        <nav class="navbar navbar-default">
+            <h3>Local Food Carts</h3>
+            <div class="pull-right">
+                <p>
+                <form action='/login' method='post'><a href="/">Home</a> | <a href="/create_acct">Create an Account</a> | <input type="text" name="username" placeholder="username"><input type="password" name="password" placeholder="password"><button type="submit" name="submit">login</button>
+                </p>
+            </div>
+        </nav>
+        <h1 class="text-center">Local Food Carts</h1>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="title">Owner Portal</h2>
+            </div>
+            <div class="panel-body">
+                <p>
+                    List of your food carts in separate panels
+                </p>
+                <form action='/owner_portal' method="post">
+                    <label for="cart_name">What is the name of your food cart?</label>
+                    <input type="text" name="cart_name" placeholder=" your name goes here">
+                    <label for="cart_type">What type of food is it?</label>
+                    <input type="text" name="cart_type" placeholder=" tacos">
+                    <label for="cart_street">Street</label>
+                    <input type="text" name="cart_street" placeholder=" 12345 SE 100th St">
+                    <label for="cart_city">What city is this cart in</label>
+                    <input type="text" name="cart_city" placeholder=" city here">
+                    <label for="cart_state">What state?</label>
+                    <input type="text" name="cart_state" placeholder=" state">
+                    <label for="cart_zip">What zip code?</label>
+                    <input type="number" name="cart_zip" placeholder=" zip">
+                    <label for="cart_phone">Does your cart have a phone number?</label>
+                    <input type="text" name="cart_phone" placeholder=" 503 333 3333">
+                    <label for="cart_url">What's your website?</label>
+                    <input type="text" name="cart_url" placeholder=" https://www.localfoodcarts.com">
+                    
+                    <button type="submit" name="button">add this cart</button>
+                </form>
+
+            </div>
+        </div>
 
 
 

@@ -27,12 +27,28 @@
         return $app['twig']->render('index.html.twig');
     });
 
+    $app->post('/local_food_types' , function() use ($app) {
+        return $app['twig']->render('local_food_types.html.twig');
+    });
+
+    $app->post('/login' , function() use ($app) {
+        return $app['twig']->render('owner_portal.html.twig');
+    });
+
+    $app->get('/create_account' , function() use ($app) {
+        return $app['twig']->render('create_account.html.twig');
+    });
+
+    $app->get('/cart_portal' , function() use ($app) {
+        return $app['twig']->render('cart_portal.html.twig');
+    });
+
     $app->post('/local_food_carts' , function() use ($app) {
         return $app['twig']->render('local_food_carts.html.twig');
     });
 
-    $app->post('/login' , function() use ($app) {
-        return $app['twig']->render('index.html.twig');
+    $app->get('/cart_profile' , function() use ($app) {
+        return $app['twig']->render('cart_profile.html.twig');
     });
 
 
