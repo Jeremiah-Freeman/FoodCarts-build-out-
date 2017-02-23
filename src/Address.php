@@ -69,5 +69,9 @@ class Address
         $GLOBALS['DB']->exec("INSERT INTO addresses (city_id, state_id, street, zip) VALUES ({$this->getCityId()},{$this->getStateId()},'{$this->getStreet()}',{$this->getzip()})");
         $this->id= $GLOBALS['DB']->lastInsertId();
     }
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM addresses;");
+    }
 }
 ?>
