@@ -1,28 +1,44 @@
 <html>
 <head>
-    <title>Portland Food Carts</title>
+    <title>Local Food Carts</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
     <link rel='stylesheet' href='css/styles.css' type='text/css'>
 </head>
 <body>
     <div class="container-fluid">
-        <h1 class="text-center">Portland Food Carts</h1>
-
-
-        {% if cuisines is not empty %}
-            <div class="row">
-                {% for cuisine in cuisines %}
-                    <h2 class="text-center"><strong><a href="/cuisines/{{ cuisine.getId }}">{{ cuisine.getType }}</a></strong></h2>
-
-
-                {% endfor %}
+        <nav class="navbar navbar-default">
+            <h3>Local Food Carts</h3>
+            <div class="pull-right">
+                <p>
+                <form action='/login' method='post'><a href="/">Home</a> | <a href="/create_acct">Create an Account</a> | <input type="text" name="username" placeholder="username"><input type="password" name="password" placeholder="password"><button type="submit" name="submit">login</button>
+                </form>
+                </p>
             </div>
-        {% else %}
-            <p>There are no cuisines yet!</p>
-        {% endif %}
 
-        <h2>Don't see your category?  <a href="/cuisines">Click here</a> to add one to our list!</h2>
+        </nav>
+        <h1 class="text-center">Local Food Carts</h1>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="title">Find Local Food Carts</h2>
+            </div>
+            <div class="panel-body">
+
+                <form action='/local_food_carts' method="post">
+                    <label for="food_type">What kind of food do you want?</label>
+                    <input type="text" name="food_type" placeholder=" thai, indian, ethopian">
+                    <p><strong>Where are you?</strong>
+                        <label for="city">city</label>
+                        <input type="text" name="city" placeholder="Portland">
+                        <label for="state">state</label>
+                        <input type="text" name="state" placeholder="Oregon">
+                    </p>
+                    <button type="submit" name="button">see local food carts</button>
+                </form>
+
+            </div>
+        </div>
     </div>
+    <!-- container ends here -->
 
 </body>
 </html>
