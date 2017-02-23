@@ -77,5 +77,18 @@ class Address
         }
         return $addresses;
     }
+
+    static function find($search_id)
+    {
+        $found_address = null;
+        $addresses = Address::getAll();
+        foreach($addresses as $address) {
+            $address_id = $address->getId();
+            if ($address_id == $search_id) {
+                $found_address = $address;
+            }
+        }
+        return $found_address;
+    }
 }
 ?>
