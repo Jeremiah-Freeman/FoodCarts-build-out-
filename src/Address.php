@@ -61,18 +61,49 @@ class Address
     // }
     function save()
     {
-        $GLOBALS['DB']->exec("INSERT INTO cities (city_name) VALUES ({$this->getCity()})");
-        $this->city_id= $GLOBALS['DB']->lastInsertId();
+        // $GLOBALS['DB']->exec("INSERT INTO cities (city_name) VALUES ({$this->getCity()})");
+        // $this->city_id= $GLOBALS['DB']->lastInsertId();
+        // echo "City Name: " . $this->getCity() . "\n";
+        // echo "City ID: " . $this->getCityId() . "\n";
+        //
+        // $GLOBALS['DB']->exec("INSERT INTO states (state_name) VALUES ({$this->getState()})");
+        // $this->state_id= $GLOBALS['DB']->lastInsertId();
+        //
+        // // echo "State Name: " . $this->getState() . "\n";
+        // // echo "State ID: " . $this->getStateId() . "\n";
+        //
+        // $GLOBALS['DB']->exec("INSERT INTO addresses (city_id, state_id, street, zip) VALUES ({$this->getCityId()},{$this->getStateId()},'{$this->getStreet()}',{$this->getzip()})");
+        // $this->id= $GLOBALS['DB']->lastInsertId();
 
-        $GLOBALS['DB']->exec("INSERT INTO states (state_name) VALUES ({$this->getState()})");
-        $this->state_id= $GLOBALS['DB']->lastInsertId();
-
-        $GLOBALS['DB']->exec("INSERT INTO addresses (city_id, state_id, street, zip) VALUES ({$this->getCityId()},{$this->getStateId()},'{$this->getStreet()}',{$this->getzip()})");
-        $this->id= $GLOBALS['DB']->lastInsertId();
+        // echo "Address ID: " . $this->getId() . "\n";
     }
     static function deleteAll()
     {
         $GLOBALS['DB']->exec("DELETE FROM addresses;");
+    }
+    static function getAll()
+    {
+        // $returned_addresses = $GLOBALS['DB']->query("SELECT * FROM addresses ");
+        // $addresses = array();
+        // foreach($returned_addresses as $address) {
+        //     $address_street = $address['street'];
+        //     $address_zip = $address['zip'];
+        //     $address_id = $address['id'];
+        //     $address_city = "HELLO";
+        //     $address_state = "Hello";
+
+            // echo "Inside getALL \n";
+            // echo $address_street;
+            // // echo $address_city;
+            // // echo $address_state;
+            //
+            // var_dump($address);
+            //
+            //
+            // $new_type = new Address($address_street, $address_city, $address_state, $address_zip, $address_id);
+            // array_push($addresses, $new_type);
+        //}
+        //return $addresses;
     }
 }
 ?>
