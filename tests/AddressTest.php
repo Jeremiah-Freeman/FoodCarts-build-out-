@@ -94,22 +94,34 @@ class AddressTest extends PHPUnit_Framework_TestCase
         //Assert
         $this->assertEquals([$test_address, $test_address2], $result);
     }
-//
-//     function test_deleteAll()
-//     {
-//        //Arrange
-//        $type = "Thai";
-//        $type2 = "Indian";
-//        $test_Address = new Address($type);
-//        $test_Address->save();
-//        $test_Address2 = new Address($type2);
-//        $test_Address2->save();
-//        //Act
-//        Address::deleteAll();
-//        $result = Address::getAll();
-//        //Assert
-//        $this->assertEquals([], $result);
-//     }
+
+    function test_deleteAll()
+    {
+       //Arrange
+       $street = "12345 ne dog";
+       $city = new City("portland");
+       $city->save();
+       $state = new State("Guam");
+       $state->save();
+       $zip = 97230;
+       $test_address = new Address($street, $city, $state, $zip);
+       $test_address->save();
+
+
+       $street2 = "12345 ww dog";
+       $city2 = new City("portland");
+       $city2->save();
+       $state2 = new State("sss");
+       $state2->save();
+       $zip2 = 97230;
+       $test_address2 = new Address($street, $city, $state, $zip);
+       $test_address2->save();
+       //Act
+       Address::deleteAll();
+       $result = Address::getAll();
+       //Assert
+       $this->assertEquals([], $result);
+    }
 //     //
 //     function test_find()
 //     {
