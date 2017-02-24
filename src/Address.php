@@ -10,7 +10,6 @@ class Address
     private $city_id;
     private $state_id;
     private $id;
-
     // address object constructor
     function __construct($street, $city, $state, $zip, $id=null)
     {
@@ -41,7 +40,6 @@ class Address
     {
         return $this->id;
     }
-
     function getStateId()
     {
         return $this->state_id;
@@ -50,12 +48,10 @@ class Address
     {
         return $this->city_id;
     }
-
     function save()
     {
         $GLOBALS['DB']->exec("INSERT INTO addresses (city_id, state_id, street, zip) VALUES ({$this->city->getId()},{$this->state->getId()},'{$this->getStreet()}',{$this->getzip()})");
         $this->id= $GLOBALS['DB']->lastInsertId();
-
     }
     static function deleteAll()
     {
@@ -71,13 +67,11 @@ class Address
             $address_id = $address['id'];
             $address_city = City::find($address['city_id']);
             $address_state = State::find($address['state_id']);
-
             $new_type = new Address($address_street, $address_city, $address_state, $address_zip, $address_id);
             array_push($addresses, $new_type);
         }
         return $addresses;
     }
-
     static function find($search_id)
     {
         $found_address = null;

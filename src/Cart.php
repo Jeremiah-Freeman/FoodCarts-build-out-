@@ -1,145 +1,141 @@
 <?php
-    class Cart
+// Cart class definition.
+class Cart
+{
+    // private object properties
+    private $cuisine_id;
+    private $cuisine;
+    private $name_id;
+    private $name;
+    private $address_id;
+    private $address;
+    private $profile_id;
+    private $profile;
+    private $promotion_id;
+    private $promotion;
+    private $phone;
+    private $id;
+    private $url;
+    private $cart_image_url;
+
+    // cart object constructor
+    function __construct($address, $cuisine, $phone, $profile, $promotion, $name, $url,$cart_image_url, $id=null)
     {
-        private $name;
-        private $id;
-        private $cuisine_id;
-        private $street;
-        private $city;
-        private $state;
-        private $zip;
-        private $phone;
-        private $url;
-
-        function __construct($name, $id = null, $cuisine_id, $street, $city, $state, $zip, $phone, $url)
-        {
-            $this->name = $name;
-            $this->id = $id;
-            $this->cuisine_id = $cuisine_id;
-            $this->street = $street;
-            $this->city = $city;
-            $this->state = $state;
-            $this->zip = $zip;
-            $this->phone = $phone;
-            $this->url = $url;
-        }
-        // getters
-        function getName()
-        {
-            return $this->name;
-        }
-        function getCuisineId()
-        {
-            return $this->cuisine_id;
-        }
-        function getStreet()
-        {
-            return $this->street;
-        }
-        function getCity()
-        {
-            return $this->city;
-        }
-        function getState()
-        {
-            return $this->state;
-        }
-        function getZip()
-        {
-            return $this->zip;
-        }
-        function getPhone()
-        {
-            return $this->phone;
-        }
-        function getUrl()
-        {
-            return $this->url;
-        }
-
-        //setters
-        function setName($new_name)
-        {
-            $this->name = (string) $new_name;
-        }
-        function setCuisineId($new_cuisine_id)
-        {
-            $this->cuisine_id = (string) $new_cuisine_id;
-        }
-        function setStreet($new_street)
-        {
-            $this->street = (string) $new_street;
-        }
-        function setCity($new_city)
-        {
-            $this->city = (string) $new_city;
-        }
-        function setState($new_state)
-        {
-            $this->state = (string) $new_state;
-        }
-        function setZip($new_zip)
-        {
-            $this->zip = (string) $new_zip;
-        }
-        function setPhone($new_phone)
-        {
-            $this->phone = (string) $new_phone;
-        }
-        function setUrl($new_url)
-        {
-            $this->url = (string) $new_url;
-        }
-
-        function save()
-        {
-            $GLOBALS['DB']->exec("INSERT INTO carts (name, cuisine_id, street, city, state, zip, phone, url) VALUES ('{$this->getName()}', {$this->getCuisineId()}, '{$this->getStreet()}','{$this->getCity()}','{$this->getState()}',{$this->getZip()},'{$this->getPhone()}','{$this->getUrl()}')");
-            $this->id = $GLOBALS['DB']->lastInsertId();
-        }
-        static function getAll()
-        {
-            $returned_carts = $GLOBALS['DB']->query("SELECT * FROM carts;");
-            $carts = array();
-            foreach($returned_carts as $cart) {
-                $name = $cart['name'];
-                $id = $cart['id'];
-                $cuisine_id = $cart['cuisine_id'];
-                $street = $cart['street'];
-                $city = $cart['city'];
-                $state = $cart['state'];
-                $zip = intval($cart['zip']);
-                $phone = $cart['phone'];
-                $url = $cart['url'];
-                $new_cart = new Cart($name, $id, $cuisine_id,$street,$city,$state,$zip,$phone,$url);
-                array_push($carts, $new_cart);
-            }
-            return $carts;
-        }
-        static function deleteAll()
-        {
-            $GLOBALS['DB']->exec("DELETE FROM carts;");
-        }
-        function getId()
-        {
-            return $this->id;
-        }
-        function update($new_name)
-        {
-            $GLOBALS['DB']->exec("UPDATE carts SET name = '{$new_name}' WHERE id = {$this->getId()};");
-            $this->setName($new_name);
-        }
-
-        static function find($search_id)
-        {
-            $found_cart = null;
-            $carts = Cart::getAll();
-            foreach($carts as $cart){
-                $cart_id = $cart->getId();
-                if($cart_id == $search_id) {
-                    $found_cart = $cart;
-                }
-            }
-            return $found_cart;
-        }
+        $this->address= $address;
+        $this->cuisine = $cuisine;
+        $this->phone = $phone;
+        $this->profile = $profile;
+        $this->promotion = $promotion;
+        $this->name = $name;
+        $this->url = $url;
+        $this->id = $id;
+        $this->cart_image_url = $cart_image_url;
     }
+
+    // getter methods
+    function getAddress()
+    {
+        return $this->address;
+    }
+    function getCuisine()
+    {
+        return $this->cuisine;
+    }
+    function getPhone()
+    {
+        return $this->phone;
+    }
+    function getProfile()
+    {
+        return $this->profile;
+    }
+    function getPromotion()
+    {
+        return $this->promotion;
+    }
+    function getName()
+    {
+        return $this->name;
+    }
+    function getUrl()
+    {
+        return $this->url;
+    }
+    function getId()
+    {
+        return $this->id;
+    }
+    function getCartImageUrl()
+    {
+        return $this->cart_image_url;
+    }
+
+    //id's
+
+    function getCuisineId()
+    {
+        return $this->cuisine_id;
+    }
+    function getNameId()
+    {
+        return $this->name_id;
+    }
+    function getAddressId()
+    {
+        return $this->address_id;
+    }
+    function getProfileId()
+    {
+        return $this->profile_id;
+    }
+    function getPromotionId()
+    {
+        return $this->promotion_id;
+    }
+
+    function save()
+    {
+        $GLOBALS['DB']->exec("INSERT INTO carts (address_id, cuisine_id, name_id, cart_id, profile_id, promotion_id, phone, url, cart_image_url) VALUES ({$this->address->getId()}, {$this->cuisine->getId()},{$this->name->getId()}, {$this->cart->getId()}, {$this->profile->getId()}, {$this->promotion->getId()},  '{$this->getPhone()}','{$this->getUrl()}', '{$this->getCartImageUrl()}')");
+        $this->id= $GLOBALS['DB']->lastInsertId();
+
+    }
+    static function deleteAll()
+    {
+        $GLOBALS['DB']->exec("DELETE FROM carts;");
+    }
+    static function getAll()
+    {
+        $returned_carts = $GLOBALS['DB']->query("SELECT * FROM carts ");
+        $carts = array();
+        foreach($returned_carts as $cart) {
+            $cart_phone = $cart['phone'];
+            $cart_url = $cart['url'];
+            $cart_id = $cart['id'];
+            $cart_image_url = $cart['cart_image_url'];
+            $cart_cuisine = Cuisine::find($cart['cuisine_id']);
+            $cart_name = Cart_Name::find($cart['name_id']);
+            $cart_address = Address::find($cart['address_id']);
+            $cart_profile = Profile::find($cart['profile_id']);
+            $cart_promotion = Promotion::find($cart['promotion_id']);
+
+            $new_type = new Cart($cart_address, $cart_cuisine, $cart_phone, $cart_profile, $cart_promotion, $cart_name, $cart_url, $cart_image_url, $cart_id);
+            array_push($carts, $new_type);
+        }
+        return $carts;
+    }
+
+
+    static function find($search_id)
+    {
+        $found_cart = null;
+        $carts = Cart::getAll();
+        foreach($carts as $cart) {
+            $cart_id = $cart->getId();
+            if ($cart_id == $search_id) {
+                $found_cart = $cart;
+            }
+        }
+        return $found_cart;
+    }
+}
 ?>
